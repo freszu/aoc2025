@@ -1,12 +1,16 @@
+import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.io.path.Path
 import kotlin.io.path.readText
+import kotlin.io.readText
 
 /**
  * Reads lines from the given input txt file.
  */
 fun readInput(name: String) = Path("src/$name.txt").readText().trim().lines()
+
+fun readInputAsString(name: String) = File("src", "$name.txt").readText()
 
 /**
  * Converts string to md5 hash.
@@ -19,3 +23,8 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+fun <T:Any?> T.alsoPrintln(): T {
+    println(this)
+    return this
+}
